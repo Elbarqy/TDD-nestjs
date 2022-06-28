@@ -1,3 +1,4 @@
+import { SaveProductRequest } from './../dtos/SaveProductDto';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProductController } from './product.controller';
 import { ProductService } from './product.service';
@@ -15,9 +16,14 @@ describe('ProductController', () => {
     productService = module.get<ProductService>(ProductService);
   });
 
-  describe('first test', () => {
+  describe('SaveTesting', () => {
     it('should be defined', () => {
-      const product = {};
+      const product: SaveProductRequest = {
+        shopId: 'okay',
+        name: 'testProduct',
+        images: ['a'],
+        price: 300,
+      }; 
       let spyFn = jest.spyOn(productService, 'save');
       productController.save(product);
       expect(spyFn).toHaveBeenCalled();
